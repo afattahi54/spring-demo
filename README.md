@@ -1,7 +1,7 @@
 # Getting Started
 
 ### Reference Documentation
-For further reference, please consider the following sections:
+A sample application which shows the usage of spring data and spring jpa 3 which is build with spring boot 3 and  
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.0.1/maven-plugin/reference/html/)
@@ -26,3 +26,9 @@ Use http://127.0.0.1:8080/h2-console to connect to h2 database you can use
 SELECT * FROM ARTICLE 
 ```
 You can see that the data base is up an running and it has data
+
+
+You can start h2 console directly
+
+C:\Users\a_fattahi\.m2\repository\com\h2database\h2\2.1.214
+ java -cp h2-1.4.194.jar org.h2.tools.Server -tcp -web -browser

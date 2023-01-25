@@ -1,3 +1,5 @@
-INSERT INTO Article (id, name, title) VALUES (1, 'Spring' , 'Spring is cool');
-INSERT INTO Article (id, name, title) VALUES (2, 'Java' ,   'Java is cool');
+INSERT INTO Tag (id, name) VALUES (1, 'Spring');
+INSERT INTO Tag (id, name) VALUES (2, 'Java');
+INSERT INTO Tag (id, name) VALUES (3, 'Apache');
+INSERT INTO Tag (id, name) VALUES (4, 'Struts');
 
