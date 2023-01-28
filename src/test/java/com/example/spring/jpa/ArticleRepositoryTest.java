@@ -50,7 +50,7 @@ class ArticleRepositoryTest {
 		
 		Article savedArticle = repository.save(newArticle);
 		assertThat(savedArticle).extracting(Article::getTitle, Article::getDescription, Article::getBody, Article::getTags )
-								.containsExactly("New Title","New Desc","New Body", new String[] { "Java" } );
+								.containsExactly("New Title","New Desc","New Body", Arrays.asList(  tagRepo.findByName("Java") ) );
 	}
 
 	@Test
@@ -88,20 +88,20 @@ class ArticleRepositoryTest {
 	}
 
 	@Test
-	void should_find_articles_by_name_containing_string() {
+	void should_find_articles_by_title_containing_string() {
 		Article article1 = new Article("How to train Spring?", "Ever wonder how?" ,"Try spring.io first", Arrays.asList(  tagRepo.findByName("Spring") ) );
 		repository.save(article1);
 
-		Article article2 = new Article("Is Java what you are looking for?", "May be other tech?" ,"Ofcourse it is none dying tech", Arrays.asList(  tagRepo.findByName("Java") ) );
+		Article article2 = new Article("Will  java remain forever?", "May be other tech?" ,"Ofcourse it is none dying tech", Arrays.asList(  tagRepo.findByName("Java") ) );
 		repository.save(article2);
 
 		Article article3 = new Article("Spring data can save your life", "how?" ,"No more boilerplate", Arrays.asList(tagRepo.findByName("Spring") ) );
 		repository.save(article3);
 
-		Article article4 = new Article("playING with caps lock", "test case" ,"CAPS LOCK cOULD bEE fUNN", Arrays.asList(tagRepo.findByName("Spring") ) );;
+		Article article4 = new Article("playING with caps lock", "test case" ,"CAPS LOCK cOULD bEE fUNN", Arrays.asList(tagRepo.findByName("Spring") ) );
 		repository.save(article4);
 
-		List<Article> articles = repository.findByNameContaining("ing");
+		List<Article> articles = repository.findByTitleContaining("ing");
 
 		assertThat(articles).hasSize(2).contains(article1, article3);
 	}

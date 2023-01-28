@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Commit;
 
 import com.example.spring.jpa.model.Article;
 import com.example.spring.jpa.model.Comment;
@@ -16,7 +18,8 @@ import com.example.spring.jpa.repository.CommentRepository;
 import com.example.spring.jpa.repository.TagRepository;
 
 @DataJpaTest
-class CommentRepositoryTest {
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+class CommentReposotoryTest {
 
 	@Autowired
 	CommentRepository commentRepo;
@@ -34,6 +37,7 @@ class CommentRepositoryTest {
 		assertThat(allComments).isEmpty();
 	}
 
+	@Commit
 	@Test
 	void should_add_comment_for_article() {
 		Article artilce = new Article("New Title 1","New Desc 1","New Body 1", Arrays.asList(  tagRepo.findByName("Java") ));

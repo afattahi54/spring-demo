@@ -9,8 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,10 +21,9 @@ import lombok.ToString;
 @Getter @Setter @RequiredArgsConstructor @NoArgsConstructor
 @Entity
 @ToString
-@SequenceGenerator(name = "id_gen", sequenceName = "id_gen",  initialValue = 100)
 public class Article {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "id_gen")	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private long id;
 	
     @Column(length = 40)
@@ -44,6 +43,8 @@ public class Article {
 	@OneToMany
 	@JoinColumn
 	private List<Comment> comments;
+	
+	@ManyToMany //https://stackoverflow.com/questions/8804572/hibernate-onetomany-and-unique-constraint/75266290#75266290
 	@NonNull
 	private List<Tag> tags;
 }

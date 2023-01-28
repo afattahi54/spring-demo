@@ -16,7 +16,7 @@ import com.example.spring.jpa.model.Article;
  *
  */
 public interface ArticleRepository extends ListCrudRepository<Article, Long> , ListPagingAndSortingRepository<Article, Long>{
-	List<Article> findByNameContaining(String name);
+	List<Article> findByTitleContaining(String name);
 	
 //	@Query("select a from Article u where u.name = :name")
 //	UserEntity findByNameCustomQuery(@Param("name") String name);

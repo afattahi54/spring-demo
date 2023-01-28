@@ -2,17 +2,21 @@ logging:
   pattern:
     #console: "%clr(%d{yy-MM-dd E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n"
     console: "%clr(%m){faint}%n"
+  level:
+    #sql: debug
+    org.hibernate.orm.jdbc.bind: trace
+
 spring:
   sql:
      init:
-      mode: always #Removing this property will stip h2 database initialized when in file mode! Seems to be a bug
+      mode: always #Removing this property will skip h2 database initialized when in file mode! Seems to be a bug
   datasource:
     driverClassName: org.h2.Driver
     #there are lots of database supports in h2. see http://www.h2database.com/html/features.html#database_url
     #url: jdbc:h2:./database/app-db 
     url: jdbc:h2:D:/database/app-db;FILE_LOCK=NO
     username: sa
-    password: password
+    password: password  
   h2:
     console:
       enabled: true
@@ -23,5 +27,11 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+    #show-sql : true   
     hibernate:
       ddl-auto : create-drop # Removing this will prevent h2 datase schema created. It is not needed for mem datadabses.
+    properties:
+      hibernate:
+        format_sql: true    
+      
+    
