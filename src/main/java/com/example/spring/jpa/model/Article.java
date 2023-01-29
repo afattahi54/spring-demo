@@ -11,16 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter @Setter @RequiredArgsConstructor @NoArgsConstructor
+
 @Entity
-@ToString
+@Data
+@NoArgsConstructor @RequiredArgsConstructor
 public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)	
@@ -47,4 +46,7 @@ public class Article {
 	@ManyToMany //https://stackoverflow.com/questions/8804572/hibernate-onetomany-and-unique-constraint/75266290#75266290
 	@NonNull
 	private List<Tag> tags;
+	
+	
+	
 }

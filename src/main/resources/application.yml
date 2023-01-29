@@ -14,7 +14,7 @@ spring:
     driverClassName: org.h2.Driver
     #there are lots of database supports in h2. see http://www.h2database.com/html/features.html#database_url
     #url: jdbc:h2:./database/app-db 
-    url: jdbc:h2:D:/database/app-db;FILE_LOCK=NO
+    url: jdbc:h2:D:/database/app-db
     username: sa
     password: password  
   h2:

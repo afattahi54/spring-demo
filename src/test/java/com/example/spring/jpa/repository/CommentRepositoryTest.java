@@ -1,10 +1,8 @@
-package com.example.spring.jpa;
+package com.example.spring.jpa.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -13,13 +11,10 @@ import org.springframework.test.annotation.Commit;
 
 import com.example.spring.jpa.model.Article;
 import com.example.spring.jpa.model.Comment;
-import com.example.spring.jpa.repository.ArticleRepository;
-import com.example.spring.jpa.repository.CommentRepository;
-import com.example.spring.jpa.repository.TagRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class CommentReposotoryTest {
+class CommentRepositoryTest {
 
 	@Autowired
 	CommentRepository commentRepo;
@@ -33,17 +28,17 @@ class CommentReposotoryTest {
 
 	@Test
 	void should_find_no_comment_if_repository_is_empty() {
-		List<Comment> allComments = commentRepo.findAll();
+		var allComments = commentRepo.findAll();
 		assertThat(allComments).isEmpty();
 	}
 
 	@Commit
 	@Test
 	void should_add_comment_for_article() {
-		Article artilce = new Article("New Title 1","New Desc 1","New Body 1", Arrays.asList(  tagRepo.findByName("Java") ));
-		Article savedArticle = articleRepo.save(artilce);
-		Comment comment = new Comment("Intersting article", savedArticle);
-		Comment savedComment = commentRepo.save(comment);
+		var artilce = new Article("New Title 1","New Desc 1","New Body 1", Arrays.asList(  tagRepo.findByName("Java") ));
+		var savedArticle = articleRepo.save(artilce);
+		var comment = new Comment("Intersting article", savedArticle);
+		var savedComment = commentRepo.save(comment);
 
 		assertThat(savedComment)
 					.extracting( Comment::getName, c -> c.getArticle().getTitle() , c -> c.getArticle().getBody())

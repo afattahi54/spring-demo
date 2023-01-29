@@ -1,7 +1,6 @@
 package com.example.spring.jpa.service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -20,18 +19,18 @@ public class ArticleService {
 
 	public Article createArticle(NewArticleRequest newArticleRequest) {
 	
-		List<Tag> articleTags = new ArrayList<Tag>();
+		var articleTags = new ArrayList<Tag>();
 		
 		for ( String tag : newArticleRequest.getTagList() ) {
-			Tag artcileTag =Optional.ofNullable( tagRepo.findByName(tag))
+			Tag artcileTag = Optional.ofNullable( tagRepo.findByName(tag))
 					.orElseGet( () -> {
-						Tag newTag = new Tag(tag); 
+						var newTag = new Tag(tag); 
 						return tagRepo.save(newTag);
 					});
 			articleTags.add(artcileTag);
-		};
+		}
 			
-		Article article = new Article(
+		var article = new Article(
 				newArticleRequest.getTitle(), 
 				newArticleRequest.getDescription(),
 				newArticleRequest.getBody(), 

@@ -9,13 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@ToString
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Data
+@NoArgsConstructor @RequiredArgsConstructor
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +22,6 @@ public class Tag {
 	
 	@ManyToOne
 	private Article article;
+	
+	
 }
