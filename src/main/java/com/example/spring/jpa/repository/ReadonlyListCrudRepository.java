@@ -8,7 +8,7 @@ import org.springframework.data.repository.Repository;
 
 
 @NoRepositoryBean
-public interface NoDeleteListCrudRepository<T, ID> extends Repository<T, ID> {
+public interface ReadonlyListCrudRepository<T, ID> extends Repository<T, ID> {
 	<S extends T> S save(S entity);	
 	Optional<T> findById(ID id);
 	boolean existsById(ID id);
