@@ -29,7 +29,7 @@ public class ArticleService {
 	
 		var articleTags = new ArrayList<Tag>();
 		
-		for ( String tag : newArticleRequest.getTagList() ) {
+		for ( String tag : newArticleRequest.getTags() ) {
 			var artcileTag = Optional.ofNullable( tagRepo.findByName(tag))
 					.orElseGet( () -> {
 						var newTag = new Tag(tag); 
@@ -45,5 +45,9 @@ public class ArticleService {
 				newArticleRequest.getBody(), 
 				articleTags);
 		return articleRepo.save(article);
+	}
+	
+	public Article findArticle(String articleId) {		
+		return articleRepo.findById(Long.valueOf(articleId)).orElseThrow();
 	}
 }

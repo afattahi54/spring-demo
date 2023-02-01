@@ -34,4 +34,4 @@ C:\Users\a_fattahi\.m2\repository\com\h2database\h2\2.1.214
  java -cp h2-1.4.194.jar org.h2.tools.Server -tcp -web -browser
  
  
-  "D:\Projects\sts-4.17.1.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933\jre\bin\java.exe" -jar lombok.jar delombok D:\Projects\workspace-spring-tool\demo\src\main\java\com\example\spring\jpa\model\ -d d:\test
+"D:\Projects\sts-4.17.1.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933\jre\bin\java.exe" -jar D:\Projects\sts-4.17.1.RELEASE\lombok.jar delombok D:\Projects\workspace-spring-tool\demo\src\main\java\com\example\spring\jpa\model\ -d d:\test

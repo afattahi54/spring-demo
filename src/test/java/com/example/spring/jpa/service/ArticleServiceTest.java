@@ -37,7 +37,7 @@ class ArticleServiceTest {
 	ArticleService articleService;
 		
 	@Test
-	void should_save_article_when_tag_exist(){
+	void should_not_save_when_tag_exist(){
 		// Arrange		
 		when(articleRepo.save(any (Article.class) )).thenReturn(new Article());
 		when(tagRepo.findByName("Java")).thenReturn(new Tag());
@@ -54,7 +54,7 @@ class ArticleServiceTest {
 	}
 	
 	@Test
-	void should_save_article_when_two_tags_exist(){
+	void should_save_only_new_tags(){
 		// Arrange
 		when(articleRepo.save(any (Article.class) )).thenReturn(new Article());
 		when(tagRepo.findByName("Java")).thenReturn(new Tag());
