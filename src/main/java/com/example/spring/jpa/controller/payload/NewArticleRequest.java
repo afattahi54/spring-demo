@@ -12,11 +12,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 
+@Builder (toBuilder = true)
 @Getter
 @JsonRootName("article")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @EqualsAndHashCode //The equal needs for test see: https://stackoverflow.com/questions/26680678/mockito-thenreturn-always-returns-null-object
 public class NewArticleRequest {
 	@NotBlank(message = "can't be empty")

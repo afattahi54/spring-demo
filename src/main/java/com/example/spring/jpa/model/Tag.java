@@ -5,23 +5,31 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Entity
+@Builder (toBuilder = true)
 @Data
-@NoArgsConstructor @RequiredArgsConstructor
+@Entity
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+@ToString
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 	@NonNull
 	private String name;
 	
 	@ManyToOne
 	private Article article;
-	
 	
 }

@@ -18,7 +18,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-@Builder
+@Builder (toBuilder = true)
 @Data
 @Entity
 @EqualsAndHashCode
@@ -31,7 +31,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 	
 	@NonNull
 	private String email;

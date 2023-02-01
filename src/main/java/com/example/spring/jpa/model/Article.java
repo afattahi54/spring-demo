@@ -24,7 +24,7 @@ import lombok.Singular;
 import lombok.ToString;
 
 
-@Builder
+@Builder (toBuilder = true)
 @Data
 @Entity
 @EqualsAndHashCode
@@ -38,7 +38,7 @@ public class Article {
 	private long id;
 	
 	@NonNull
-	@OneToOne
+	@OneToOne ( cascade = CascadeType.ALL )
 	private User user;
 	
     @Column(length = 40)
@@ -55,15 +55,13 @@ public class Article {
 	private LocalDateTime updatedAt;
 	
 	@Singular
-	@OneToMany
+	@OneToMany( cascade = CascadeType.ALL )
 	@JoinColumn
 	private List<Comment> comments;
 	
 	@Singular
 	//why one to many? see: https://stackoverflow.com/questions/8804572/hibernate-onetomany-and-unique-constraint/75266290#75266290
-	@ManyToMany (cascade = CascadeType.ALL )
+	@ManyToMany ( cascade = CascadeType.ALL )
 	@NonNull
 	private List<Tag> tags;
-	
-	
 }

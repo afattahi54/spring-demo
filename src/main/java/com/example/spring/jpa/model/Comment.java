@@ -5,16 +5,26 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Entity
-@SequenceGenerator(name = "id_generator", sequenceName = "id_generator", initialValue = 1)
+@Builder (toBuilder = true)
 @Data
+@Entity
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+@ToString
 public class Comment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "id_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@NonNull
