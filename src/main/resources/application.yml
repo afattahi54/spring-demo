@@ -33,5 +33,6 @@ spring:
     properties:
       hibernate:
         format_sql: true    
-      
-    
+jwt:
+  secret: 345566ff
+  sessionTime: 86400

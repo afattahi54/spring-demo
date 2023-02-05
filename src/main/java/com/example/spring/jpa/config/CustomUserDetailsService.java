@@ -3,6 +3,7 @@ package com.example.spring.jpa.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.spring.jpa.model.User;
@@ -27,8 +28,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Transactional
     public UserDetails loadUserById(Long id) {
-        User user = userRepository.findById(id);
-
+        User user = userRepository.findById(id).orElseThrow(() ->
+        	new UsernameNotFoundException("User not found with username or email : " + id)
+        );
         return UserPrincipal.create(user);
     }
 }

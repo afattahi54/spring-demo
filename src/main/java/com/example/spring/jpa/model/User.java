@@ -1,9 +1,12 @@
 package com.example.spring.jpa.model;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +19,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Singular;
 import lombok.ToString;
 
 @Builder (toBuilder = true)
@@ -47,5 +51,9 @@ public class User {
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
 	List<Article> articles;
+	
+	@Enumerated(EnumType.STRING)
+	@Singular
+	private Set<Role> roles;
 
 }

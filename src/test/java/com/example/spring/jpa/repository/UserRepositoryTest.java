@@ -27,6 +27,14 @@ class UserRepositoryTest {
 								.containsExactly(newUser.getUsername(),newUser.getEmail(), newUser.getPassword() );
 	}
 
+	@Test
+	@Commit
+	void should_store_a_user_with_role() {		
+		var newUser = UserTestData.aUserWithUserRole().build();		
+		var savedUser = userRepo.save(newUser);	
+		assertThat(savedUser).extracting(User::getUsername , User::getEmail, User::getPassword , User::getRoles)
+								.containsExactly(newUser.getUsername(),newUser.getEmail(), newUser.getPassword(), newUser.getRoles() );
+	}
 
 
 }
