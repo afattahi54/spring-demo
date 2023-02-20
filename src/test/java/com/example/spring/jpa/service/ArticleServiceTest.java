@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,6 +20,7 @@ import com.example.spring.jpa.repository.ArticleRepository;
 import com.example.spring.jpa.repository.TagRepository;
 import com.example.spring.jpa.repository.UserRepository;
 import com.example.spring.jpa.testdata.NewArticleRequestTestData;
+import com.example.spring.jpa.testdata.UserPrincipalTestData;
 
 @ExtendWith(MockitoExtension.class)
 class ArticleServiceTest {
@@ -39,13 +42,13 @@ class ArticleServiceTest {
 		// Arrange		
 		when(articleRepo.save(any (Article.class) )).thenReturn(new Article());
 		when(tagRepo.findByName("Java")).thenReturn(new Tag());
-		when(userRepo.findByUsername(any(String.class) )).thenReturn(new User());
-
+		when(userRepo.findById(any(String.class) )).thenReturn( Optional.of( new User() ));
+		
 		// Act		
 		final var newArticleRequest = NewArticleRequestTestData.aNewArticleRequest()
 										.tag("Java")
 										.build();
-		articleService.createArticle(newArticleRequest);
+		articleService.createArticle(newArticleRequest,UserPrincipalTestData.aUserProncipal().build());
 		
 		// Assert
 		 verify(tagRepo, times(0)).save(any(Tag.class));
@@ -66,7 +69,7 @@ class ArticleServiceTest {
 										.tag("Struts")
 										.build();
 		
-		articleService.createArticle(newArticleRequest);
+		articleService.createArticle(newArticleRequest, UserPrincipalTestData.aUserProncipal().build() );
 		
 		// Assert
 		 verify(tagRepo, times(1)).save(any(Tag.class));

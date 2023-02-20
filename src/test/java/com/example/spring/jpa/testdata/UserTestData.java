@@ -5,6 +5,7 @@ import com.example.spring.jpa.model.Role;
 import com.example.spring.jpa.model.User;
 
 public class UserTestData {
+	
 	public static User.UserBuilder aUser(){
 		return User.builder()
 				.username("afattahi")
@@ -19,7 +20,11 @@ public class UserTestData {
 	}
 	
 	public static User.UserBuilder aUserWithUserRole(){
+		return aUser();
+	}
+	
+	public static  User.UserBuilder aSavedUser(){
 		return aUser()
-				.role(Role.ROLE_USER);
+				.id("111-222");
 	}
 }

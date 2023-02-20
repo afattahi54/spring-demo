@@ -34,8 +34,8 @@ import lombok.ToString;
 @ToString
 public class Article {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
-	private long id;
+	@GeneratedValue(strategy = GenerationType.UUID)	
+	private String id;
 	
 	@NonNull
 	@OneToOne ( cascade = CascadeType.ALL )
@@ -60,7 +60,7 @@ public class Article {
 	private List<Comment> comments;
 	
 	@Singular
-	//why one to many? see: https://stackoverflow.com/questions/8804572/hibernate-onetomany-and-unique-constraint/75266290#75266290
+	//why not one to many? see: https://stackoverflow.com/questions/8804572/hibernate-onetomany-and-unique-constraint/75266290#75266290
 	@ManyToMany ( cascade = CascadeType.ALL )
 	@NonNull
 	private List<Tag> tags;

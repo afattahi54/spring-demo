@@ -24,8 +24,8 @@ import lombok.ToString;
 @ToString
 public class Comment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String id;
 
 	@NonNull
 	private String name;

@@ -1,10 +1,12 @@
 package com.example.spring.jpa.model;
 
+import java.util.Collection;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +16,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-@Builder (toBuilder = true)
+@Builder(toBuilder = true)
 @Data
 @Entity
 @EqualsAndHashCode
@@ -22,14 +24,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class Tag {
+public class Privilege {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
+
 	@NonNull
 	private String name;
-	
-	@ManyToOne
-	private Article article;
-	
+
+	@ManyToMany
+	private Collection<Role> roles;
 }

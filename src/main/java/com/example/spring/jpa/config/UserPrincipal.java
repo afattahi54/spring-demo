@@ -12,10 +12,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.spring.jpa.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Builder;
+import lombok.Singular;
+
+@Builder (toBuilder = true)
 public class UserPrincipal implements UserDetails {
 	private static final long serialVersionUID = -9017778623657252966L;
 
-	private Long id;
+	private String id;
 
 	private String name;
 
@@ -26,10 +30,11 @@ public class UserPrincipal implements UserDetails {
 
 	@JsonIgnore
 	private String password;
-
+	
+	@Singular
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserPrincipal(Long id, String name, String username, String email, String password,
+	public UserPrincipal(String id, String name, String username, String email, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.name = name;
@@ -42,13 +47,13 @@ public class UserPrincipal implements UserDetails {
 	public static UserPrincipal create(User user) {
 
 		List<GrantedAuthority> authorities = user.getRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList());
+				.map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 
 		return new UserPrincipal(user.getId(), null, user.getUsername(), user.getEmail(), user.getPassword(),
 				authorities);
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 

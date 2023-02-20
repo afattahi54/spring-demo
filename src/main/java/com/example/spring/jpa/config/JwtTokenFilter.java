@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.example.spring.jpa.repository.UserRepository;
@@ -17,6 +18,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -41,10 +43,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 	            id -> {
 	              if (SecurityContextHolder.getContext().getAuthentication() == null) {
 	                userRepository
-	                    .findById(Long.valueOf(id))
+	                    .findById(id)
 	                    .ifPresent(
 	                        user -> {	                          
-	                        UserDetails userDetails = customUserDetailsService.loadUserById(Long.valueOf(id));
+	                        UserDetails userDetails = customUserDetailsService.loadUserById(id);
 	                        
 	                        UsernamePasswordAuthenticationToken authenticationToken =
 		                              new UsernamePasswordAuthenticationToken(userDetails , null, userDetails.getAuthorities());

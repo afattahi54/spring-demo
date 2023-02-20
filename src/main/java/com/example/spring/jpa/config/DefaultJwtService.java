@@ -29,7 +29,7 @@ public class DefaultJwtService  {
 
   public String toToken(User user) {
     return Jwts.builder()
-        .setSubject( Long.toString(user.getId() ) )
+        .setSubject( user.getId() )
         .setExpiration(expireTimeFromNow())
         .signWith(signingKey)
         .compact();

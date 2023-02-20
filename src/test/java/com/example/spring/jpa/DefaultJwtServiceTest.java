@@ -17,19 +17,19 @@ class DefaultJwtServiceTest {
 
 	@BeforeEach
 	public void setUp() {
-		jwtService = new DefaultJwtService("121234543211234543211234543211234543211234543211234543211234543213454321", 3600);
+		jwtService = new DefaultJwtService("234545454545454544121234543211234543211234543211234543211234543211234543211234543213454321", 3600);
 	}
 
 	@Test
 	void should_generate_valid_token() {
 		var user = UserTestData.aUser().build();
-		user.setId(1);
+		user.setId("111-222");
 		String generatedToken = jwtService.toToken(user);
 		assertThat(generatedToken).isNotBlank();
 		
 		var userId = jwtService.getSubFromToken(generatedToken);		
 		
-		assertThat(Long.valueOf(userId.get())).isEqualTo(user.getId());
+		assertThat(userId.get()).isEqualTo(user.getId());
 
 	}
 	

@@ -12,41 +12,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spring.jpa.config.UserPrincipal;
 import com.example.spring.jpa.controller.payload.NewArticleRequest;
+import com.example.spring.jpa.controller.payload.NewUserRequest;
 import com.example.spring.jpa.model.Article;
+import com.example.spring.jpa.model.User;
 import com.example.spring.jpa.service.ArticleService;
+import com.example.spring.jpa.service.UserService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/articles")
-public class ArticlesApi {
+@RequestMapping("/users")
+public class UsersApi {
 
 	@Autowired
-	ArticleService articleService;
+	UserService userService;
 
 	@PostMapping
-	public ResponseEntity<?> createArticle(@Valid @RequestBody NewArticleRequest newArticleRequest, 
-			@AuthenticationPrincipal UserPrincipal userPrincipal) {
-		Article newArticle = articleService.createArticle(newArticleRequest, userPrincipal);
+	public ResponseEntity<?> createUser(@Valid @RequestBody NewUserRequest newUserRequest) {
+		User newUser = userService.createUser(newUserRequest);
 		return ResponseEntity.ok(new HashMap<String, Object>() {
 			private static final long serialVersionUID = -8763806509755934907L;
 
 			{
-				put("article",newArticle ) ;
+				put("article",newUser ) ;
 			}
 		});
 	}
 
-//	@GetMapping("/find/{id}")
-//	public Article findArticle(@PathVariable("id") long id){
-//		return articleRepository.findById(id).orElseThrow();
-//		
-//	}
-//	
-//	@DeleteMapping("/delete/{id}")
-//	public ResponseEntity<Object> deleteArticle(@PathVariable("id") long id){
-//		articleRepository.deleteById(id);
-//		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//		
-//	}
 }

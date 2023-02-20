@@ -15,7 +15,7 @@ import com.example.spring.jpa.model.Article;
  * @author A_Fattahi
  *
  */
-public interface ArticleRepository extends ListCrudRepository<Article, Long> , ListPagingAndSortingRepository<Article, Long>{
+public interface ArticleRepository extends ListCrudRepository<Article, String> , ListPagingAndSortingRepository<Article, String>{
 	List<Article> findByTitleContaining(String name);
 	
 	//https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.subject

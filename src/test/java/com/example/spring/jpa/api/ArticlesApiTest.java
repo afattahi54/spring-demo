@@ -1,4 +1,4 @@
-package com.example.spring.jpa;
+package com.example.spring.jpa.api;
 
 import static org.mockito.Mockito.when;
 
@@ -10,9 +10,10 @@ import static org.hamcrest.core.IsEqual.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
-
+import com.example.spring.jpa.config.SecurityConfig;
 import com.example.spring.jpa.controller.ArticlesApi;
 import com.example.spring.jpa.service.ArticleService;
 import com.example.spring.jpa.testdata.ArticleTestData;
@@ -21,7 +22,8 @@ import com.example.spring.jpa.testdata.NewArticleRequestTestData;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 @WebMvcTest({ArticlesApi.class})
-class ArticlesApiTest {
+@Import({SecurityConfig.class})
+class ArticlesApiTest extends TestWithCurrentUser{
 
 	@MockBean
 	ArticleService articleService;
@@ -29,8 +31,10 @@ class ArticlesApiTest {
 	@Autowired
 	private MockMvc mvc;
 
+	@Override
 	@BeforeEach
-	public void setUp() {
+	public void setUp(){
+		super.setUp();
 		RestAssuredMockMvc.mockMvc(mvc);
 	}
 
@@ -39,10 +43,11 @@ class ArticlesApiTest {
 		var newArticleRequest = NewArticleRequestTestData.aNewArticleRequest().build();
 		var article = ArticleTestData.anArticle().build();
 
-		when(articleService.createArticle(newArticleRequest)).thenReturn(article);
+		when(articleService.createArticle(newArticleRequest,userPrincipal)).thenReturn(article);
 		
 		given().
 			contentType("application/json").
+			header("Authorization", "Token " + token).
 			body(newArticleRequest).
 		when().
 			post("/articles").			

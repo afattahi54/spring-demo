@@ -88,7 +88,7 @@ class ArticleRepositoryTest {
 		var savedArticles = articleRepo.saveAll(artiles);
 		var validIdFound = new AtomicInteger();
 		savedArticles.forEach(a -> {
-			if (a.getId() > 0) {
+			if (!a.getId().isEmpty()) {
 				validIdFound.getAndIncrement();
 			}
 		});

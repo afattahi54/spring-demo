@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.spring.jpa.config.UserPrincipal;
 import com.example.spring.jpa.controller.payload.NewArticleRequest;
 import com.example.spring.jpa.model.Article;
 import com.example.spring.jpa.model.Tag;
@@ -25,7 +26,7 @@ public class ArticleService {
 	@Autowired
 	UserRepository userRepo;
 
-	public Article createArticle(NewArticleRequest newArticleRequest) {
+	public Article createArticle(NewArticleRequest newArticleRequest,UserPrincipal userPrincipal) {
 	
 		var articleTags = new ArrayList<Tag>();
 		
@@ -37,9 +38,9 @@ public class ArticleService {
 					});
 			articleTags.add(artcileTag);
 		}
-		
+				
 		var article = new Article(
-				userRepo.findByUsername("alireza"),
+				userRepo.findById( userPrincipal.getId()).get(),
 				newArticleRequest.getTitle(), 
 				newArticleRequest.getDescription(),
 				newArticleRequest.getBody(), 
@@ -48,6 +49,6 @@ public class ArticleService {
 	}
 	
 	public Article findArticle(String articleId) {		
-		return articleRepo.findById(Long.valueOf(articleId)).orElseThrow();
+		return articleRepo.findById(articleId).orElseThrow();
 	}
 }
