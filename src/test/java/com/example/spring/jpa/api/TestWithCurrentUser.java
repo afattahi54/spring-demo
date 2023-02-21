@@ -9,7 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.example.spring.jpa.config.CustomUserDetailsService;
 import com.example.spring.jpa.config.DefaultJwtService;
-import com.example.spring.jpa.config.UserPrincipal;
 import com.example.spring.jpa.model.User;
 import com.example.spring.jpa.repository.UserRepository;
 import com.example.spring.jpa.testdata.UserTestData;
@@ -25,18 +24,17 @@ abstract class TestWithCurrentUser {
 	@MockBean
 	protected DefaultJwtService jwtService;
 
-	protected UserPrincipal userPrincipal;
+	protected User user;
 	protected String token;
 
 	void fixuser() {
 		User user = UserTestData.aSavedUser().build();
-		userPrincipal = UserPrincipal.create(user);
 
 		when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 		token = "aToken";
 		when(jwtService.getSubFromToken(token)).thenReturn(Optional.of( String.valueOf( user.getId()) ));
 
-		when(customUserDetailsService.loadUserById("111-222")).thenReturn(userPrincipal);
+		//when(customUserDetailsService.loadUserById("111-222")).thenReturn(user);
 
 	}
 

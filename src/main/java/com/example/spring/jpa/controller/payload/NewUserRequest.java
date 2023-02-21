@@ -1,22 +1,24 @@
 package com.example.spring.jpa.controller.payload;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@Getter
-@JsonRootName("user")
-@AllArgsConstructor
-@NoArgsConstructor
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+
+
+@Data
+@JsonTypeName(value = "user")
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class NewUserRequest {
-  //@NotBlank(message = "can't be empty")
-  //@Email(message = "should be an email")
+  @NotBlank(message = "can't be empty")
+  @Email(message = "should be an email")
   private String email;
 
-  //@NotBlank(message = "can't be empty")
+  @NotBlank(message = "can't be empty")
   private String username;
 
-  //@NotBlank(message = "can't be empty")
+  @NotBlank(message = "can't be empty")
   private String password;
 }

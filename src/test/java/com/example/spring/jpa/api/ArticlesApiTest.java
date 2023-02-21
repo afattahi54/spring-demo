@@ -43,7 +43,7 @@ class ArticlesApiTest extends TestWithCurrentUser{
 		var newArticleRequest = NewArticleRequestTestData.aNewArticleRequest().build();
 		var article = ArticleTestData.anArticle().build();
 
-		when(articleService.createArticle(newArticleRequest,userPrincipal)).thenReturn(article);
+		when(articleService.createArticle(newArticleRequest,user)).thenReturn(article);
 		
 		given().
 			contentType("application/json").

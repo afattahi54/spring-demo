@@ -52,7 +52,7 @@ public class SecurityConfig {
 	        			.requestMatchers(HttpMethod.GET,"/articles/feed").authenticated()
 	        			.requestMatchers(HttpMethod.POST, "/users",  "/users/login").permitAll()
 	        			.requestMatchers(HttpMethod.GET, "/articles/**", "/profiles/**", "/tags").permitAll()	        			
-				        .anyRequest().authenticated()
+				        .anyRequest().permitAll()
 				        )
 	        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	        return http.build();

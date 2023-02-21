@@ -45,7 +45,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 	                userRepository
 	                    .findById(id)
 	                    .ifPresent(
-	                        user -> {	                          
+	                        user -> {
 	                        UserDetails userDetails = customUserDetailsService.loadUserById(id);
 	                        
 	                        UsernamePasswordAuthenticationToken authenticationToken =

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.spring.jpa.config.UserPrincipal;
 import com.example.spring.jpa.controller.payload.NewArticleRequest;
 import com.example.spring.jpa.model.Article;
+import com.example.spring.jpa.model.User;
 import com.example.spring.jpa.service.ArticleService;
 
 import jakarta.validation.Valid;
@@ -25,9 +25,9 @@ public class ArticlesApi {
 	ArticleService articleService;
 
 	@PostMapping
-	public ResponseEntity<?> createArticle(@Valid @RequestBody NewArticleRequest newArticleRequest, 
-			@AuthenticationPrincipal UserPrincipal userPrincipal) {
-		Article newArticle = articleService.createArticle(newArticleRequest, userPrincipal);
+	public ResponseEntity<?> createArticle(@Valid @RequestBody NewArticleRequest newArticleRequest,
+			@AuthenticationPrincipal User user) {
+		Article newArticle = articleService.createArticle(newArticleRequest, user);
 		return ResponseEntity.ok(new HashMap<String, Object>() {
 			private static final long serialVersionUID = -8763806509755934907L;
 

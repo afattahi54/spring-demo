@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.spring.jpa.config.UserPrincipal;
 import com.example.spring.jpa.controller.payload.NewArticleRequest;
 import com.example.spring.jpa.model.Article;
 import com.example.spring.jpa.model.Tag;
+import com.example.spring.jpa.model.User;
 import com.example.spring.jpa.repository.ArticleRepository;
 import com.example.spring.jpa.repository.TagRepository;
 import com.example.spring.jpa.repository.UserRepository;
@@ -26,7 +26,7 @@ public class ArticleService {
 	@Autowired
 	UserRepository userRepo;
 
-	public Article createArticle(NewArticleRequest newArticleRequest,UserPrincipal userPrincipal) {
+	public Article createArticle(NewArticleRequest newArticleRequest,User user) {
 	
 		var articleTags = new ArrayList<Tag>();
 		
@@ -40,7 +40,7 @@ public class ArticleService {
 		}
 				
 		var article = new Article(
-				userRepo.findById( userPrincipal.getId()).get(),
+				userRepo.findById( user.getId()).get(),
 				newArticleRequest.getTitle(), 
 				newArticleRequest.getDescription(),
 				newArticleRequest.getBody(), 

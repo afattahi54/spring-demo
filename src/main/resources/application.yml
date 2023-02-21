@@ -5,6 +5,8 @@ logging:
   level:
     #sql: debug
     org.hibernate.orm.jdbc.bind: trace
+    org.springframework.web.filter.CommonsRequestLoggingFilter : debug
+    org.springframework.web.servlet.mvc.method.annotation : trace
 
 spring:
   sql:

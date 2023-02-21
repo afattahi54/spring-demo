@@ -1,0 +1,15 @@
+
+{
+	"HELP" :"https://openapi-generator.tech/docs/generators/spring/",
+	"additionalModelTypeAnnotations" : "@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor",
+	"basePackage" : "sample.foo",
+	"apiPackage" : "sample.foo.api",
+	"configPackage" : "sample.foo.config",
+	"modelPackage":  "sample.foo.model",
+	"developerEmail" : "afattahi@yahoo.com",
+	"developerName" : "Alireza Fattahi",
+	"developerOrganization" :"freeland",
+	"useSpringBoot3" : "true",
+	"delegatePattern" :"true",
+	"interfaceOnly" : "true"
+}
