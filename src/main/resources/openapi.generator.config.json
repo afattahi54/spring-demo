@@ -11,5 +11,5 @@
 	"developerOrganization" :"freeland",
 	"useSpringBoot3" : "true",
 	"delegatePattern" :"true",
-	"interfaceOnly" : "true"
+	"interfaceOnly" : "true"	
 }
