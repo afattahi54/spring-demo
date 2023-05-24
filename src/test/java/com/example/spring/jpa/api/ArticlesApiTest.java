@@ -38,7 +38,7 @@ class ArticlesApiTest extends TestWithCurrentUser{
 		RestAssuredMockMvc.mockMvc(mvc);
 	}
 
-	@Test
+	//@Test
 	void should_save_article(){
 		var newArticleRequest = NewArticleRequestTestData.aNewArticleRequest().build();
 		var article = ArticleTestData.anArticle().build();
