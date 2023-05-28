@@ -118,7 +118,7 @@
 	</build>
 	<distributionManagement>
 		<repository>
-			<id>afattahi54</id>
+			<id>github</id>
 			<name>GitHub Packages</name>
 			<url>https://maven.pkg.github.com/afattahi54/demo</url>
 		</repository>
