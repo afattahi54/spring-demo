@@ -20,6 +20,4 @@ jobs:
           servers: '[
           {"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.GITHUB_TOKEN }}"}}}}]'
       - name: Publish package
-        run: mvn --batch-mode deploy
-        env:
-          GITHUB_TOKEN: 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
+        run: mvn deploy
