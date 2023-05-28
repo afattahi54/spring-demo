@@ -120,7 +120,7 @@
 		<repository>
 			<id>afattahi54</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/afattahi54/hello-world</url>
+			<url>https://maven.pkg.github.com/afattahi54/demo</url>
 		</repository>
 	</distributionManagement>
 </project>
