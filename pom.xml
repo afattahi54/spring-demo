@@ -118,9 +118,9 @@
 	</build>
 	<distributionManagement>
 		<repository>
-			<id>github</id>
+			<id>afattahi54</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/octocat/hello-world</url>
+			<url>https://maven.pkg.github.com/afattahi54/hello-world</url>
 		</repository>
 	</distributionManagement>
 </project>
